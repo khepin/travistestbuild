@@ -1,5 +1,6 @@
 {
     "name": "khepin/travistestbuild",
+    "minimum-stability": "dev",
     "require": {
         "guzzle/guzzle": "v2.8.3"
     },
