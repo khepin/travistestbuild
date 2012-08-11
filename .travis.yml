@@ -1,0 +1,31 @@
+language: php
+
+php: 
+  - 5.4
+
+before_install:
+  ##############################################################################
+  # Setup apache2
+  ##############################################################################
+  - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-mysql php5-sqlite > /dev/null
+  # Replace basedir in virtual host config
+  - sed 's?%basedir%?'`pwd`'?' .travis/apache/virtual.host > .travis/apache/vhost
+  # Define virtual host
+  - sudo mv .travis/apache/vhost /etc/apache2/sites-available/testsite
+  # Dump virtual host config to see if there are any errors
+  - cat /etc/apache2/sites-available/testsite
+  - echo "127.0.0.1    testsite.loc" | sudo tee -a /etc/hosts
+  # View hosts file to check that we have everything correctly set
+  - cat /etc/hosts
+  - sudo a2enmod rewrite
+  - sudo a2ensite testsite
+  - sudo /etc/init.d/apache2 restart
+  ##############################################################################
+  # curl various urls for testing
+  ##############################################################################
+  - echo "CURL to a file with a php 5.3 defined array"
+  - curl http://testsite.loc/test_5_3.php
+  - echo "CURL to a file with a php 5.4 defined array"
+  - curl http://testsite.loc/test_5_4.php
+
+script: phpunit
