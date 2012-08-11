@@ -23,9 +23,7 @@ before_install:
 
 before_script:
   - sudo ./composer.phar install
-
-script: phpunit tests/
-
-after_script:
   - curl http://travistest.loc/test_5_3.php
   - curl http://travistest.loc/test_5_4.php
+
+script: phpunit tests/
