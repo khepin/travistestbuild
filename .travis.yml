@@ -28,4 +28,4 @@ before_install:
   - echo "CURL to a file with a php 5.4 defined array"
   - curl http://testsite.loc/test_5_4.php
 
-script: phpunit
+# script: phpunit
