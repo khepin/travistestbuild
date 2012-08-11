@@ -13,10 +13,10 @@ before_install:
   # Define virtual host
   - sudo mv .travis/apache/vhost /etc/apache2/sites-available/travistest
   # Dump virtual host config to see if there are any errors
-  - cat /etc/apache2/sites-available/travistest
+  # - cat /etc/apache2/sites-available/travistest
   - echo "127.0.0.1    travistest.loc" | sudo tee -a /etc/hosts
   # View hosts file to check that we have everything correctly set
-  - cat /etc/hosts
+  # - cat /etc/hosts
   - sudo a2enmod rewrite
   - sudo a2ensite travistest
   - sudo /etc/init.d/apache2 restart
@@ -25,3 +25,7 @@ before_script:
   - sudo ./composer.phar install
 
 script: phpunit tests/
+
+after_script:
+  - curl http://travistest.loc/test_5_3.php
+  - curl http://travistest.loc/test_5_4.php
