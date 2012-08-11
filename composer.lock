@@ -1,0 +1,21 @@
+{
+    "hash": "22c77bdb45c54ef06bcf4f4a9efbad2d",
+    "packages": [
+        {
+            "package": "guzzle/guzzle",
+            "version": "v2.8.3"
+        },
+        {
+            "package": "symfony/symfony",
+            "version": "2.0.6"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ]
+}
