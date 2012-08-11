@@ -21,4 +21,7 @@ before_install:
   - sudo a2ensite travistest
   - sudo /etc/init.d/apache2 restart
 
+before_script:
+  - sudo ./composer.phar install
+
 script: phpunit tests/
